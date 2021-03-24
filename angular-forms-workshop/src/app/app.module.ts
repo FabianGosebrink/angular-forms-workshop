@@ -11,6 +11,7 @@ import { FormSimpleControlComponent } from './form-simple-control/form-simple-co
 import { FormSimpleGroupComponent } from './form-simple-group/form-simple-group.component';
 import { MaterialModule } from './material/material.module';
 import { NavigationComponent } from './navigation/navigation.component';
+import { FormSimpleSearchComponent } from './form-simple-search/form-simple-search.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     FormSimpleGroupComponent,
     BlockButtonsComponent,
     FormSimpleArrayComponent,
+    FormSimpleSearchComponent,
   ],
   imports: [
     BrowserModule,
