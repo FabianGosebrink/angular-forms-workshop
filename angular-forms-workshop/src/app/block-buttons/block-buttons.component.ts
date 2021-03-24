@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'app-block-buttons',
   templateUrl: './block-buttons.component.html',
-  styleUrls: ['./block-buttons.component.scss'],
+  styleUrls: ['./block-buttons.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

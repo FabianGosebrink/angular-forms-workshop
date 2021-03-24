@@ -4,6 +4,9 @@
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label> First Name:</mat-label>
         <input matInput formControlName="firstName" />
+        <mat-error *ngIf="myForm.get('age').errors?.required"
+          >Please enter your age</mat-error
+        >
       </mat-form-field>
 
       <p>status {{ myForm.get("firstName").status | json }}</p>

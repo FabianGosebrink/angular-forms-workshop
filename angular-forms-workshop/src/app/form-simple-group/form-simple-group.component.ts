@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AgeValidator } from './age.validator';
+import { PokemonNameValidator } from './async-pokemon-validator';
 import { RestrictAgeValidator } from './restrict-age.validator';
 import { Room } from './room';
 
@@ -19,7 +20,10 @@ export class FormSimpleGroupComponent implements OnInit {
     { text: 'room 3', value: 'room-3' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private pokemonNameValidator: PokemonNameValidator
+  ) {}
 
   ngOnInit() {
     // this.myForm = new FormGroup({
@@ -30,7 +34,11 @@ export class FormSimpleGroupComponent implements OnInit {
 
     this.myForm = this.formBuilder.group(
       {
-        firstName: ['', Validators.required],
+        firstName: [
+          '',
+          Validators.required,
+          this.pokemonNameValidator.nameAlreadyTaken(),
+        ],
         lastName: ['', Validators.required],
         age: ['', [Validators.required, AgeValidator.ageValidator]],
         room: [null, Validators.required],
