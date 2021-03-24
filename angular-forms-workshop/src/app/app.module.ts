@@ -6,9 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { NavigationComponent } from './navigation/navigation.component';
+import { FormSimpleControlComponent } from './form-simple-control/form-simple-control.component';
 
 @NgModule({
-  declarations: [NavigationComponent, AppComponent],
+  declarations: [NavigationComponent, AppComponent, FormSimpleControlComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
