@@ -2,25 +2,27 @@
   <mat-card class="card">
     <h1 class="mat-h1">Form Control</h1>
 
-    <mat-form-field appearance="fill" class="example-form">
-      <input matInput [formControl]="myFirstControl" />
-    </mat-form-field>
-    <p>
-      {{ myFirstControl.value | json }}
-      {{ myFirstControl.status | json }}
-      {{ myFirstControl.errors | json }}
-    </p>
+    <div class="example-form">
+      <mat-form-field appearance="fill" class="example-form">
+        <input matInput [formControl]="myFirstControl" />
+      </mat-form-field>
+      <p>
+        {{ myFirstControl.value | json }}
+        {{ myFirstControl.status | json }}
+        {{ myFirstControl.errors | json }}
+      </p>
 
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="setValue()">
-        SetValue
-      </button>
-      <button mat-raised-button color="primary" (click)="patchValue()">
-        PatchValue
-      </button>
-      <button mat-raised-button color="primary" (click)="submitted()">
-        Submit
-      </button>
-    </mat-card-actions>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="setValue()">
+          SetValue
+        </button>
+        <button mat-raised-button color="primary" (click)="patchValue()">
+          PatchValue
+        </button>
+        <button mat-raised-button color="primary" (click)="submitted()">
+          Submit
+        </button>
+      </mat-card-actions>
+    </div>
   </mat-card>
 </div>

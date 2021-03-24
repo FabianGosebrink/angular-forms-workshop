@@ -22,6 +22,12 @@ export class FormSimpleGroupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    // this.myForm = new FormGroup({
+    //   firstName: new FormControl(''),
+    //   lastName: new FormControl(''),
+    //   // ...
+    // });
+
     this.myForm = this.formBuilder.group(
       {
         firstName: ['', Validators.required],

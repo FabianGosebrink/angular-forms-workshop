@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card class="card">
+    <h1 class="mat-h1">Form Array</h1>
+
+    <div class="example-form">
+      <form [formGroup]="myFormGroup">
+        <div formArrayName="myFormArray">
+          <mat-form-field
+            *ngFor="let control of formArray.controls; index as i"
+            appearance="fill"
+            class="example-form"
+          >
+            <input matInput [formControlName]="i" />
+          </mat-form-field>
+        </div>
+      </form>
+      {{ myFormGroup.value | json }}
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="addControl()">
+          Add Control
+        </button>
+
+        <button mat-raised-button color="primary" (click)="submitted()">
+          Submit
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
