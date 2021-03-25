@@ -4,12 +4,24 @@
 
     <div class="example-form">
       <mat-form-field appearance="fill" class="example-form">
-        <input matInput [formControl]="myFirstControl" />
+        <input
+          matInput
+          [formControl]="myFirstControl"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="myFirstControl.hasError('email')">
+          Bitte geben sie eine valide Email an
+        </mat-error>
       </mat-form-field>
       <p>
-        {{ myFirstControl.value | json }}
-        {{ myFirstControl.status | json }}
-        {{ myFirstControl.errors | json }}
+        value: {{ myFirstControl.value | json }}<br />
+        touched: {{ myFirstControl.touched | json }}<br />
+        untouched: {{ myFirstControl.untouched | json }}<br />
+        pristine: {{ myFirstControl.pristine | json }}<br />
+        dirty: {{ myFirstControl.dirty | json }}<br />
+        status: {{ myFirstControl.status | json }}<br />
+        errors: {{ myFirstControl.errors | json }}<br />
+        valid: {{ myFirstControl.valid | json }}<br />
       </p>
 
       <mat-card-actions align="end">

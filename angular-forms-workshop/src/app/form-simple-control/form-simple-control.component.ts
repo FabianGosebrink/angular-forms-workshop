@@ -1,5 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
+  }
+}
 
 @Component({
   selector: 'app-form-simple-control',
@@ -7,6 +27,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./form-simple-control.component.css'],
 })
 export class FormSimpleControlComponent implements OnInit {
+  matcher = new MyErrorStateMatcher();
+
   myFirstControl = new FormControl('my first value', {
     validators: Validators.required,
   });
