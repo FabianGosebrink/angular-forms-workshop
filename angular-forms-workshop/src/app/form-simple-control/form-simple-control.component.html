@@ -9,7 +9,7 @@
           [formControl]="myFirstControl"
           [errorStateMatcher]="matcher"
         />
-        <mat-error *ngIf="myFirstControl.hasError('email')">
+        <mat-error *ngIf="myFirstControl.hasError('required')">
           Bitte geben sie eine valide Email an
         </mat-error>
       </mat-form-field>
