@@ -4,14 +4,17 @@
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label> First Name:</mat-label>
         <input matInput formControlName="firstName" />
-        <mat-error *ngIf="myForm.get('age').errors?.required"
-          >Please enter your age</mat-error
+        <mat-error *ngIf="myForm.get('firstName').errors?.required"
+          >Please enter a name</mat-error
+        >
+        <mat-error *ngIf="myForm.get('firstName').errors?.nameAlreadyTaken"
+          >Name is already taken</mat-error
         >
       </mat-form-field>
 
-      <p>status {{ myForm.get("firstName").status | json }}</p>
-      <p>value {{ myForm.get("firstName").value | json }}</p>
-      <p>errors {{ myForm.get("firstName").errors | json }}</p>
+      <p>status {{ myForm.get('firstName').status | json }}</p>
+      <p>value {{ myForm.get('firstName').value | json }}</p>
+      <p>errors {{ myForm.get('firstName').errors | json }}</p>
 
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label> Last Name:</mat-label>
