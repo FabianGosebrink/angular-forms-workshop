@@ -38,6 +38,8 @@ describe('FormSimpleControlComponent', () => {
 
       expect(component.myFirstControl?.value).toBe('setValue');
 
+      fixture.detectChanges();
+
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.nativeElement.value).toEqual('setValue');
     });
