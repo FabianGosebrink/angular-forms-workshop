@@ -23,7 +23,7 @@ export class FormSimpleControlComponent implements OnInit {
   }
 
   patchValue() {
-    this.myFirstControl.setValue('patchValue');
+    this.myFirstControl.patchValue('patchValue');
   }
 
   submitted() {
