@@ -1,5 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/material/material.module';
 import { FormSimpleSearchComponent } from './form-simple-search.component';
 
 describe('FormSimpleSearchComponent', () => {
@@ -8,9 +11,14 @@ describe('FormSimpleSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormSimpleSearchComponent ]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        NoopAnimationsModule,
+      ],
+      declarations: [FormSimpleSearchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
