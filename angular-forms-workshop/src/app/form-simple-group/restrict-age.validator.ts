@@ -33,6 +33,7 @@ export class RestrictAgeValidator {
       }
 
       ageControl.setErrors(null);
+
       return null;
     };
   }
