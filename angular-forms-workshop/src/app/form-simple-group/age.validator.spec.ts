@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { AgeValidator } from './age.validator';
 
 describe('AgeValidator', () => {
@@ -13,7 +13,7 @@ describe('AgeValidator', () => {
       it(`should return ${JSON.stringify(result)} when age is ${input}`, () => {
         const validatorFn = AgeValidator.ageValidator;
 
-        const res = validatorFn(new FormControl(input));
+        const res = validatorFn(new UntypedFormControl(input));
 
         expect(res).toEqual(result);
       });

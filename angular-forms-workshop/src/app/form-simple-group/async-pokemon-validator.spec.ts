@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { UntypedFormControl, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import { HttpServiceMock } from '../services/http.service-mock';
@@ -31,7 +31,7 @@ describe('PokemonNameValidator (async)', () => {
       waitForAsync(() => {
         const spy = spyOn(httpService, 'get').and.returnValue(of(null));
 
-        const formControl = new FormControl('someValue');
+        const formControl = new UntypedFormControl('someValue');
         const validatorFn = service.nameAlreadyTaken();
         const result$ = validatorFn(
           formControl
@@ -53,7 +53,7 @@ describe('PokemonNameValidator (async)', () => {
       waitForAsync(() => {
         spyOn(httpService, 'get').and.returnValue(of(null));
 
-        const formControl = new FormControl('someValue');
+        const formControl = new UntypedFormControl('someValue');
         const validatorFn = service.nameAlreadyTaken();
         const result$ = validatorFn(
           formControl
@@ -77,7 +77,7 @@ describe('PokemonNameValidator (async)', () => {
           );
         });
 
-        const formControl = new FormControl('someValue');
+        const formControl = new UntypedFormControl('someValue');
         const validatorFn = service.nameAlreadyTaken();
         const result$ = validatorFn(
           formControl
@@ -95,7 +95,7 @@ describe('PokemonNameValidator (async)', () => {
     it('should wait 500ms before sending the request', fakeAsync(() => {
       const spy = spyOn(httpService, 'get').and.returnValue(of(null));
 
-      const formControl = new FormControl('someValue');
+      const formControl = new UntypedFormControl('someValue');
       const validatorFn = service.nameAlreadyTaken();
       const result$ = validatorFn(
         formControl

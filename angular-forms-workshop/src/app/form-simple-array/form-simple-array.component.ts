@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-simple-array',
@@ -7,18 +7,18 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./form-simple-array.component.css'],
 })
 export class FormSimpleArrayComponent {
-  myFormGroup: FormGroup;
-  formArray: FormArray;
+  myFormGroup: UntypedFormGroup;
+  formArray: UntypedFormArray;
 
-  constructor(private fb: FormBuilder) {
-    this.formArray = fb.array([new FormControl('')]);
+  constructor(private fb: UntypedFormBuilder) {
+    this.formArray = fb.array([new UntypedFormControl('')]);
     this.myFormGroup = fb.group({
       myFormArray: this.formArray,
     });
   }
 
   addControl() {
-    this.formArray.push(new FormControl(''));
+    this.formArray.push(new UntypedFormControl(''));
   }
 
   submitted() {

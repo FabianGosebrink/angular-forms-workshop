@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { AgeValidator } from './age.validator';
 import { PokemonNameValidator } from './async-pokemon-validator';
 import { RestrictAgeValidator } from './restrict-age.validator';
@@ -12,7 +16,7 @@ import { Room } from './room';
 })
 export class FormSimpleGroupComponent implements OnInit {
   title = 'forms-cross-field-validation';
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
 
   rooms: Room[] = [
     { text: 'room 1', value: 'room-1' },
@@ -21,7 +25,7 @@ export class FormSimpleGroupComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private pokemonNameValidator: PokemonNameValidator
   ) {}
 

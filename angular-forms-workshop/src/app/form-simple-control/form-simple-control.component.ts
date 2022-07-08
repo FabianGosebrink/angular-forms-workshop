@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from './../services/error-state-matcher';
 
 @Component({
@@ -10,7 +10,7 @@ import { MyErrorStateMatcher } from './../services/error-state-matcher';
 export class FormSimpleControlComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
-  myFirstControl = new FormControl('my first value', {
+  myFirstControl = new UntypedFormControl('my first value', {
     validators: Validators.required,
   });
 
