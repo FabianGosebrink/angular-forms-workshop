@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
-import { AgeValidator } from './age.validator';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PokemonNameValidator } from './async-pokemon-validator';
-import { RestrictAgeValidator } from './restrict-age.validator';
 import { Room } from './room';
+
+interface UserForm
+  extends FormGroup<{
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    age: FormControl<number>;
+  }> {}
 
 @Component({
   selector: 'app-form-simple-group',
@@ -16,7 +17,7 @@ import { Room } from './room';
 })
 export class FormSimpleGroupComponent implements OnInit {
   title = 'forms-cross-field-validation';
-  myForm: UntypedFormGroup;
+  myForm: UserForm;
 
   rooms: Room[] = [
     { text: 'room 1', value: 'room-1' },
@@ -25,36 +26,27 @@ export class FormSimpleGroupComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private pokemonNameValidator: PokemonNameValidator
   ) {}
 
   ngOnInit() {
-    // this.myForm = new FormGroup({
+    // this.myForm = new FormGroup<UserForm>({
     //   firstName: new FormControl(''),
     //   lastName: new FormControl(''),
+    //   age: new FormControl(0),
     //   // ...
     // });
 
-    this.myForm = this.formBuilder.group(
-      {
-        firstName: [
-          '',
-          Validators.required,
-          this.pokemonNameValidator.nameAlreadyTaken(),
-        ],
-        lastName: ['', Validators.required],
-        age: ['', [Validators.required, AgeValidator.ageValidator]],
-        room: [null, Validators.required],
-        toggle: [''],
-      },
-      {
-        validators: [RestrictAgeValidator.restrictAgeValidator(18)],
-      }
-    );
+    this.myForm = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      age: 0,
+    });
   }
 
   onSubmit() {
+    console.log(this.myForm.getRawValue());
     console.log(this.myForm.value);
   }
 }

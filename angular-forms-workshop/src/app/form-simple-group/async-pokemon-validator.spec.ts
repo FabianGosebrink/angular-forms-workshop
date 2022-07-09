@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { UntypedFormControl, ValidationErrors } from '@angular/forms';
+import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import { HttpServiceMock } from '../services/http.service-mock';
@@ -26,76 +26,65 @@ describe('PokemonNameValidator (async)', () => {
   });
 
   describe('nameAlreadyTaken', () => {
-    it(
-      'should call correct url',
-      waitForAsync(() => {
-        const spy = spyOn(httpService, 'get').and.returnValue(of(null));
+    it('should call correct url', waitForAsync(() => {
+      const spy = spyOn(httpService, 'get').and.returnValue(of(null));
 
-        const formControl = new UntypedFormControl('someValue');
-        const validatorFn = service.nameAlreadyTaken();
-        const result$ = validatorFn(
-          formControl
-        ) as Observable<ValidationErrors | null>;
+      const formControl = new FormControl<string>(('someValue');
+      const validatorFn = service.nameAlreadyTaken();
+      const result$ = validatorFn(
+        formControl
+      ) as Observable<ValidationErrors | null>;
 
-        result$.subscribe((result) => {
-          expect(spy).toHaveBeenCalledOnceWith(
-            `https://pokeapi.co/api/v2/pokemon/someValue`
-          );
-        });
+      result$.subscribe((result) => {
+        expect(spy).toHaveBeenCalledOnceWith(
+          `https://pokeapi.co/api/v2/pokemon/someValue`
+        );
+      });
 
-        // emit valuechanges event
-        formControl.enable();
-      })
-    );
+      // emit valuechanges event
+      formControl.enable();
+    }));
 
-    it(
-      'should return null if name is not taken already',
-      waitForAsync(() => {
-        spyOn(httpService, 'get').and.returnValue(of(null));
+    it('should return null if name is not taken already', waitForAsync(() => {
+      spyOn(httpService, 'get').and.returnValue(of(null));
 
-        const formControl = new UntypedFormControl('someValue');
-        const validatorFn = service.nameAlreadyTaken();
-        const result$ = validatorFn(
-          formControl
-        ) as Observable<ValidationErrors | null>;
+      const formControl = new FormControl<string>('someValue');
+      const validatorFn = service.nameAlreadyTaken();
+      const result$ = validatorFn(
+        formControl
+      ) as Observable<ValidationErrors | null>;
 
-        result$.subscribe((result) => {
-          expect(result).toBeNull();
-        });
+      result$.subscribe((result) => {
+        expect(result).toBeNull();
+      });
 
-        // emit valuechanges event
-        formControl.enable();
-      })
-    );
+      // emit valuechanges event
+      formControl.enable();
+    }));
 
-    it(
-      'should return object if name is taken already',
-      waitForAsync(() => {
-        spyOn(httpService, 'get').and.callFake(() => {
-          return of(
-            new HttpResponse<any>({ body: 'something' })
-          );
-        });
+    it('should return object if name is taken already', waitForAsync(() => {
+      spyOn(httpService, 'get').and.callFake(() => {
+        return of(new HttpResponse<any>({ body: 'something' }));
+      });
 
-        const formControl = new UntypedFormControl('someValue');
-        const validatorFn = service.nameAlreadyTaken();
-        const result$ = validatorFn(
-          formControl
-        ) as Observable<ValidationErrors | null>;
+      const formControl = new FormControl<string>('someValue');
+      const validatorFn = service.nameAlreadyTaken();
+      const result$ = validatorFn(
+        formControl
+      ) as Observable<ValidationErrors | null>;
 
-        result$.subscribe((result) => {
-          expect(result).not.toBeNull();
-        });
+      result$.subscribe((result) => {
+        expect(result).not.toBeNull();
+      });
 
-        // emit valuechanges event
-        formControl.enable();
-      })
-    );
+      // emit valuechanges event
+      formControl.enable();
+    }));
 
     it('should wait 500ms before sending the request', fakeAsync(() => {
       const spy = spyOn(httpService, 'get').and.returnValue(of(null));
 
-      const formControl = new UntypedFormControl('someValue');
+      const formControl = new FormControl<string>('someValue');
       const validatorFn = service.nameAlreadyTaken();
       const result$ = validatorFn(
         formControl

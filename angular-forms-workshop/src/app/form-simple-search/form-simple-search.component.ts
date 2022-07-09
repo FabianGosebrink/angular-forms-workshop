@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import {
   catchError,
@@ -18,7 +18,7 @@ import { HttpService } from '../services/http.service';
   styleUrls: ['./form-simple-search.component.css'],
 })
 export class FormSimpleSearchComponent implements OnInit {
-  myControl = new UntypedFormControl('');
+  myControl = new FormControl<string>('');
   filteredOptions: Observable<string[]>;
 
   constructor(private http: HttpService) {}
