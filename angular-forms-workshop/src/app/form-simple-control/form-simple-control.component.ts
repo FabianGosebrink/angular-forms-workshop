@@ -10,7 +10,7 @@ import { MyErrorStateMatcher } from './../services/error-state-matcher';
 export class FormSimpleControlComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
-  myFirstControl = new FormControl('my first value', {
+  myFirstControl = new FormControl<string>('my first value', {
     validators: Validators.required,
   });
 

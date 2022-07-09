@@ -21,7 +21,7 @@ export class PokemonNameValidator {
 
   public nameAlreadyTaken(): AsyncValidatorFn {
     return (
-      formControl: AbstractControl
+      formControl: AbstractControl<string>
     ): Observable<ValidationErrors | null> => {
       const value = formControl.value.trim();
 

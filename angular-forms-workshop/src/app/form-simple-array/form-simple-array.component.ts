@@ -10,15 +10,15 @@ export class FormSimpleArrayComponent {
   myFormGroup: FormGroup;
   formArray: FormArray;
 
-  constructor(private fb: FormBuilder) {
-    this.formArray = fb.array([new FormControl('')]);
+  constructor(fb: FormBuilder) {
+    this.formArray = fb.array([new FormControl<string>('')]);
     this.myFormGroup = fb.group({
       myFormArray: this.formArray,
     });
   }
 
   addControl() {
-    this.formArray.push(new FormControl(''));
+    this.formArray.push(new FormControl<string>(''));
   }
 
   submitted() {

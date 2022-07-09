@@ -13,7 +13,7 @@ describe('AgeValidator', () => {
       it(`should return ${JSON.stringify(result)} when age is ${input}`, () => {
         const validatorFn = AgeValidator.ageValidator;
 
-        const res = validatorFn(new FormControl(input));
+        const res = validatorFn(new FormControl<number>(input));
 
         expect(res).toEqual(result);
       });

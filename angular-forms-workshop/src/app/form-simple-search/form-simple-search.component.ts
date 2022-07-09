@@ -18,7 +18,7 @@ import { HttpService } from '../services/http.service';
   styleUrls: ['./form-simple-search.component.css'],
 })
 export class FormSimpleSearchComponent implements OnInit {
-  myControl = new FormControl('');
+  myControl = new FormControl<string>('');
   filteredOptions: Observable<string[]>;
 
   constructor(private http: HttpService) {}
