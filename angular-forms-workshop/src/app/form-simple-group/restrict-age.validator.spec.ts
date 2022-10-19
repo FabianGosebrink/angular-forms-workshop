@@ -7,7 +7,7 @@ describe('RestrictAgeValidator', () => {
       const validatorFn = RestrictAgeValidator.restrictAgeValidator(10);
 
       const formGroup = new FormGroup({
-        age: new FormControl<string>(9),
+        age: new FormControl<number>(9),
         room: new FormControl({ text: 'room 2', value: 'room-2' }),
       });
 
@@ -20,7 +20,7 @@ describe('RestrictAgeValidator', () => {
       const validatorFn = RestrictAgeValidator.restrictAgeValidator(18);
 
       const formGroup = new FormGroup({
-        age: new FormControl<string>(20),
+        age: new FormControl<number>(20),
         room: new FormControl({ text: 'room 2', value: 'room-2' }),
       });
 

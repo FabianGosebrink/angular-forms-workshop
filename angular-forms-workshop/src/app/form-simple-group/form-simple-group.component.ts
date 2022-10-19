@@ -3,12 +3,19 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PokemonNameValidator } from './async-pokemon-validator';
 import { Room } from './room';
 
-interface UserForm
-  extends FormGroup<{
-    firstName: FormControl<string>;
-    lastName: FormControl<string>;
-    age: FormControl<number>;
-  }> {}
+interface UserForm {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  age: FormControl<number>;
+  room: FormControl<Room | null>;
+}
+
+interface User {
+  firstName: string;
+  lastName: string;
+  age: number;
+  room: Room | null;
+}
 
 @Component({
   selector: 'app-form-simple-group',
@@ -16,8 +23,8 @@ interface UserForm
   styleUrls: ['./form-simple-group.component.css'],
 })
 export class FormSimpleGroupComponent implements OnInit {
-  title = 'forms-cross-field-validation';
-  myForm: UserForm;
+  //myForm: FormGroup<UserForm>;
+  myForm: FormGroup<UserForm>;
 
   rooms: Room[] = [
     { text: 'room 1', value: 'room-1' },
@@ -38,11 +45,19 @@ export class FormSimpleGroupComponent implements OnInit {
     //   // ...
     // });
 
-    this.myForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
-      age: 0,
+    this.myForm = this.formBuilder.group<UserForm>({
+      firstName: this.formBuilder.control(''),
+      lastName: this.formBuilder.control(''),
+      age: this.formBuilder.control(0),
+      room: this.formBuilder.control(null),
     });
+
+    // this.myForm = this.formBuilder.group<User>({
+    //   firstName: '',
+    //   lastName: '',
+    //   age: 0,
+    //   room: null,
+    // });
   }
 
   onSubmit() {
