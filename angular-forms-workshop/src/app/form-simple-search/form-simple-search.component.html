@@ -14,12 +14,17 @@
             [formControl]="myControl"
             [matAutocomplete]="auto"
           />
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-autocomplete
+            autoActiveFirstOption
+            #auto="matAutocomplete"
+            (optionSelected)="optionSelected($event)"
+            [displayWith]="displayFn"
+          >
             <mat-option
               *ngFor="let option of filteredOptions | async"
               [value]="option"
             >
-              {{ option }}
+              {{ option.name }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
