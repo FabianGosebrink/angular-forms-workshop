@@ -29,7 +29,7 @@ describe('PokemonNameValidator (async)', () => {
     it('should call correct url', waitForAsync(() => {
       const spy = spyOn(httpService, 'get').and.returnValue(of(null));
 
-      const formControl = new FormControl<string>(('someValue');
+      const formControl = new FormControl<string>('someValue');
       const validatorFn = service.nameAlreadyTaken();
       const result$ = validatorFn(
         formControl
