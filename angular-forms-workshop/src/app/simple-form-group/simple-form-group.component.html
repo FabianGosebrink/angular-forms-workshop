@@ -50,7 +50,7 @@
 
       <br />
 
-      <!-- <app-block-buttons formControlName="toggle"></app-block-buttons> -->
+      <app-block-buttons formControlName="toggle"></app-block-buttons>
 
       <mat-card-actions align="end">
         <button
@@ -66,6 +66,8 @@
       <mat-error *ngIf="myForm.errors?.['roomOnlyWith18']"
         >For this Room you have to be over 18 years old</mat-error
       >
+
+      {{ myForm.value | json }}
     </form>
   </mat-card-content>
 </mat-card>

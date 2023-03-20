@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SimpleFormSearchComponent } from 'src/app/simple-form-search/simple-form-search.component';
 import { SimpleFormArrayComponent } from './simple-form-array/simple-form-array.component';
 import { SimpleFormControlComponent } from './simple-form-control/simple-form-control.component';
 import { SimpleFormGroupComponent } from './simple-form-group/simple-form-group.component';
@@ -20,6 +21,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'form-array',
     component: SimpleFormArrayComponent,
+  },
+  {
+    path: 'form-search',
+    component: SimpleFormSearchComponent,
   },
   { path: '', redirectTo: '/start', pathMatch: 'full' },
 ];

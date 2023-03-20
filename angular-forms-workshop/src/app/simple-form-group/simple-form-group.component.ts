@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { BlockButtonsComponent } from '../block-buttons/block-buttons.component';
 import { PokemonNameValidator } from './async-pokemon-validator';
 import { Room } from './room';
 
@@ -19,6 +20,7 @@ interface UserForm {
   lastName: FormControl<string>;
   age: FormControl<number>;
   room: FormControl<Room | null>;
+  toggle: FormControl<string>;
 }
 
 interface User {
@@ -39,6 +41,7 @@ interface User {
     ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule,
+    BlockButtonsComponent,
   ],
   templateUrl: './simple-form-group.component.html',
   styleUrls: ['./simple-form-group.component.css'],
@@ -71,6 +74,7 @@ export class SimpleFormGroupComponent {
       lastName: this.formBuilder.control(''),
       age: this.formBuilder.control(0),
       room: this.formBuilder.control(null),
+      toggle: this.formBuilder.control(''),
     });
 
     // this.myForm = this.formBuilder.group<User>({
