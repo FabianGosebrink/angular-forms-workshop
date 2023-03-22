@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BlockButtonsComponent } from '../block-buttons/block-buttons.component';
 import { PokemonNameValidator } from './async-pokemon-validator';
+import { RestrictAgeValidator } from './restrict-age.validator';
 import { Room } from './room';
 
 interface UserForm {
@@ -69,13 +70,22 @@ export class SimpleFormGroupComponent {
     //   // ...
     // });
 
-    this.myForm = this.formBuilder.group<UserForm>({
-      firstName: this.formBuilder.control(''),
-      lastName: this.formBuilder.control(''),
-      age: this.formBuilder.control(0),
-      room: this.formBuilder.control(null),
-      toggle: this.formBuilder.control(''),
-    });
+    this.myForm = this.formBuilder.group<UserForm>(
+      {
+        firstName: this.formBuilder.control(
+          '',
+          [],
+          [this.pokemonNameValidator.nameAlreadyTaken()]
+        ),
+        lastName: this.formBuilder.control(''),
+        age: this.formBuilder.control(0),
+        room: this.formBuilder.control(null),
+        toggle: this.formBuilder.control(''),
+      },
+      {
+        validators: [RestrictAgeValidator.restrictAgeValidator(18)],
+      }
+    );
 
     // this.myForm = this.formBuilder.group<User>({
     //   firstName: '',

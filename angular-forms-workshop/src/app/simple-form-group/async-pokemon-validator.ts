@@ -35,7 +35,7 @@ export class PokemonNameValidator {
         debounceTime(500),
         distinctUntilChanged(),
         take(1),
-        switchMap(() => this.http.get<any>(url)),
+        switchMap(() => this.http.get<unknown>(url)),
         map((result) => (!!result ? { nameAlreadyTaken: true } : null)),
         catchError(() => of(null))
       );
