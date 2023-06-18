@@ -1,10 +1,9 @@
-import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { HttpService } from '../services/http.service';
-import { HttpServiceMock } from '../services/http.service-mock';
+import { provideMock } from '../testing/auto-mock';
 import { PokemonNameValidator } from './async-pokemon-validator';
 
 describe('PokemonNameValidator (async)', () => {
@@ -14,7 +13,7 @@ describe('PokemonNameValidator (async)', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{ provide: HttpService, useClass: HttpServiceMock }],
+      providers: [provideMock(HttpService)],
     });
 
     httpService = TestBed.inject(HttpService);
@@ -28,7 +27,6 @@ describe('PokemonNameValidator (async)', () => {
   describe('nameAlreadyTaken', () => {
     it('should call correct url', waitForAsync(() => {
       const spy = spyOn(httpService, 'get').and.returnValue(of(null));
-
       const formControl = new FormControl<string>('someValue');
       const validatorFn = service.nameAlreadyTaken();
       const result$ = validatorFn(
@@ -63,9 +61,7 @@ describe('PokemonNameValidator (async)', () => {
     }));
 
     it('should return object if name is taken already', waitForAsync(() => {
-      spyOn(httpService, 'get').and.callFake(() => {
-        return of(new HttpResponse<any>({ body: 'something' }));
-      });
+      spyOn(httpService, 'get').and.returnValue(of('something'));
 
       const formControl = new FormControl<string>('someValue');
       const validatorFn = service.nameAlreadyTaken();

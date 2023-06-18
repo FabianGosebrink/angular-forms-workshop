@@ -7,15 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {
+  Observable,
   catchError,
   debounceTime,
   distinctUntilChanged,
   filter,
   map,
-  Observable,
   of,
   switchMap,
-  tap,
 } from 'rxjs';
 import { HttpService } from './../services/http.service';
 
@@ -35,14 +34,13 @@ import { HttpService } from './../services/http.service';
   ],
 })
 export class SimpleFormSearchComponent {
-  myControl = new FormControl('');
+  myControl = new FormControl<string>('');
   filteredOptions: Observable<string[]>;
 
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      tap(console.log),
       debounceTime(500),
       distinctUntilChanged(),
       filter((value) => !!value),
