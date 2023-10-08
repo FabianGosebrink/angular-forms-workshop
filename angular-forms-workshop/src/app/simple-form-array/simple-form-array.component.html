@@ -4,13 +4,12 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div class="example-form">
+    <div>
       <form [formGroup]="myFormGroup">
         <div formArrayName="myFormArray">
           <mat-form-field
             *ngFor="let control of formArray.controls; index as i"
             appearance="fill"
-            class="example-form"
           >
             <input matInput [formControlName]="i" />
           </mat-form-field>
