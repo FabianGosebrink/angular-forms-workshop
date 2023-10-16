@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,10 +34,10 @@ import { HttpService } from './../services/http.service';
   ],
 })
 export class SimpleFormSearchComponent {
+  private readonly http = inject(HttpService);
+
   myControl = new FormControl<string>('');
   filteredOptions: Observable<string[]>;
-
-  constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(

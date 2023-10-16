@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -17,7 +17,7 @@ import { HttpService } from './../services/http.service';
 
 @Injectable({ providedIn: 'root' })
 export class PokemonNameValidator {
-  constructor(private http: HttpService) {}
+  private readonly http = inject(HttpService);
 
   public nameAlreadyTaken(): AsyncValidatorFn {
     return (

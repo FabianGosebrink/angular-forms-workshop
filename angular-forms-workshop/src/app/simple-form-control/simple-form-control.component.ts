@@ -28,10 +28,6 @@ export class SimpleFormControlComponent {
     validators: Validators.required,
   });
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   setValue() {
     this.myFirstControl.setValue('setValue');
   }

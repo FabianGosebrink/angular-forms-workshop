@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -48,6 +48,10 @@ interface User {
   styleUrls: ['./simple-form-group.component.css'],
 })
 export class SimpleFormGroupComponent {
+  private readonly formBuilder = inject(FormBuilder);
+
+  private readonly pokemonNameValidator = inject(PokemonNameValidator);
+
   //myForm: FormGroup<UserForm>;
   myForm: FormGroup<UserForm>;
 
@@ -56,11 +60,6 @@ export class SimpleFormGroupComponent {
     { text: 'room 2', value: 'room-2' },
     { text: 'room 3', value: 'room-3' },
   ];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private pokemonNameValidator: PokemonNameValidator
-  ) {}
 
   ngOnInit() {
     // this.myForm = new FormGroup<UserForm>({
