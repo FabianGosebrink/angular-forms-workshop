@@ -4,7 +4,7 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable, of, timer } from 'rxjs';
 import {
   catchError,
   debounceTime,
@@ -29,13 +29,14 @@ export class PokemonNameValidator {
         return of(null);
       }
 
-      const url = `https://pokeapi.co/api/v2/pokemon/${value}`;
+      const url = `https://pokeapi.co/api/v2/pokemon/`;
 
-      return formControl.valueChanges.pipe(
-        debounceTime(500),
+      return timer(500).pipe(
+        map(() => value),
         distinctUntilChanged(),
-        take(1),
-        switchMap(() => this.http.get<unknown>(url)),
+        switchMap((value) =>
+          this.http.get<unknown>(`${url}${value.toLowerCase()}`)
+        ),
         map((result) => (!!result ? { nameAlreadyTaken: true } : null)),
         catchError(() => of(null))
       );
