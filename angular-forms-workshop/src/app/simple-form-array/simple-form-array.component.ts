@@ -20,27 +20,4 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './simple-form-array.component.html',
   styleUrls: ['./simple-form-array.component.css'],
 })
-export class SimpleFormArrayComponent {
-  private readonly fb = inject(FormBuilder);
-
-  formArray = this.fb.array([new FormControl<string>('')]);
-
-  myFormGroup = this.fb.group({
-    myFormArray: this.formArray,
-  });
-
-  // ngOnInit() {
-  //   // this.formArray = fb.array([new FormControl<string>('')]);
-  //   // this.myFormGroup = fb.group({
-  //   //   myFormArray: this.formArray,
-  //   // });
-  // }
-
-  addControl() {
-    this.formArray.push(new FormControl<string>(''));
-  }
-
-  submitted() {
-    console.log(this.myFormGroup.value);
-  }
-}
+export class SimpleFormArrayComponent {}
