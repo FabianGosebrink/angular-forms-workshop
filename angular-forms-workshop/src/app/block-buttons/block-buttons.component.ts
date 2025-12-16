@@ -5,10 +5,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-block-buttons',
-  standalone: true,
   imports: [CommonModule, MatButtonToggleModule],
   templateUrl: './block-buttons.component.html',
-  styleUrls: ['./block-buttons.component.css'],
+  styleUrls: ['./block-buttons.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,8 +20,10 @@ export class BlockButtonsComponent implements ControlValueAccessor {
   internalValue: any;
   disabled: boolean;
 
-  onChanged: any = () => {};
-  onTouched: any = () => {};
+  onChanged: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   setValue(val: any) {
     this.internalValue = val;

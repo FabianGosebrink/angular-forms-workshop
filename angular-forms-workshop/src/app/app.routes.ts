@@ -1,30 +1,25 @@
 import { Routes } from '@angular/router';
-import { SimpleFormSearchComponent } from 'src/app/simple-form-search/simple-form-search.component';
-import { SimpleFormArrayComponent } from './simple-form-array/simple-form-array.component';
-import { SimpleFormControlComponent } from './simple-form-control/simple-form-control.component';
-import { SimpleFormGroupComponent } from './simple-form-group/simple-form-group.component';
-import { StartComponent } from './start/start.component';
+import { ShowcaseFormControl } from './showcase-form-control/showcase-form-control';
+import { ShowcaseFormGroup } from './showcase-form-group/showcase-form-group';
+import { ShowcaseFormArray } from './showcase-form-array/showcase-form-array';
+import { ShowcaseFormSearch } from './showcase-form-search/showcase-form-search';
 
-export const APP_ROUTES: Routes = [
-  {
-    path: 'start',
-    component: StartComponent,
-  },
+export const routes: Routes = [
   {
     path: 'form-control',
-    component: SimpleFormControlComponent,
+    component: ShowcaseFormControl,
   },
   {
     path: 'form-group',
-    component: SimpleFormGroupComponent,
+    component: ShowcaseFormGroup,
   },
   {
     path: 'form-array',
-    component: SimpleFormArrayComponent,
+    component: ShowcaseFormArray,
   },
   {
     path: 'form-search',
-    component: SimpleFormSearchComponent,
+    component: ShowcaseFormSearch,
   },
   { path: '', redirectTo: '/start', pathMatch: 'full' },
 ];

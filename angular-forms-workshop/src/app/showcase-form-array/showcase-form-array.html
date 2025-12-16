@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <div class="header">
+      <mat-card-title>Form Array</mat-card-title>
+      <mat-card-actions align="end">
+        <div class="button-row">
+          <button (click)="addControl()" color="primary" mat-raised-button>
+            Add Control
+          </button>
+
+          <button (click)="submitted()" color="primary" mat-raised-button>
+            Submit
+          </button>
+        </div>
+      </mat-card-actions>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div>
+      <form [formGroup]="myFormGroup">
+        <div class="example-form" formArrayName="myFormArray">
+          @for (control of formArray.controls; track $index) {
+            <mat-form-field appearance="fill">
+              <input [formControlName]="$index" matInput/>
+            </mat-form-field>
+          }
+        </div>
+      </form>
+      {{ myFormGroup.value | json }}
+    </div>
+  </mat-card-content>
+</mat-card>

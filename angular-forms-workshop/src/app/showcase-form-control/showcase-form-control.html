@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Form Control</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div>
+      <mat-form-field>
+        <input
+          [errorStateMatcher]="matcher"
+          [formControl]="myFirstControl"
+          matInput
+        />
+        @if (myFirstControl.hasError('required')) {
+          <mat-error>Bitte geben sie eine valide Email an</mat-error>
+        }
+      </mat-form-field>
+
+      <p>
+        value: {{ myFirstControl.value | json }}<br/>
+        touched: {{ myFirstControl.touched | json }}<br/>
+        untouched: {{ myFirstControl.untouched | json }}<br/>
+        pristine: {{ myFirstControl.pristine | json }}<br/>
+        dirty: {{ myFirstControl.dirty | json }}<br/>
+        status: {{ myFirstControl.status | json }}<br/>
+        errors: {{ myFirstControl.errors | json }}<br/>
+        valid: {{ myFirstControl.valid | json }}<br/>
+      </p>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <div class="button-row">
+      <button (click)="setValue()" color="primary" mat-raised-button>
+        SetValue
+      </button>
+      <button (click)="patchValue()" color="primary" mat-raised-button>
+        PatchValue
+      </button>
+      <button (click)="submitted()" color="primary" mat-raised-button>
+        Submit
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
