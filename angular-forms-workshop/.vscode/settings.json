@@ -1,8 +1,8 @@
 {
   "search.exclude": {
-      "**/node_modules": true,
-      "**/pdfviewer": true,
-      "**/reports": true
+    "**/node_modules": true,
+    "**/pdfviewer": true,
+    "**/reports": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
@@ -31,10 +31,8 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": true
 }
-
-
